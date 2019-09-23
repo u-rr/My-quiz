@@ -12,8 +12,8 @@
         <!-- 正解！ 出し入れしたい -->
       </p>
 
-      <b-button variant="primary" @click="submit('True')" :disabled="isAnswered">Yes</b-button>
-      <b-button variant="danger" @click="submit('False')" :disabled="isAnswered">No</b-button><br>
+      <b-button class="submit" variant="primary" @click="submit('True')" :disabled="isAnswered">Yes</b-button>
+      <b-button class="submit" variant="danger" @click="submit('False')" :disabled="isAnswered">No</b-button><br>
     </b-jumbotron>
     <b-button variant="info" @click="next()" :disabled="!isAnswered">Next</b-button> <!-- 出し入れしたい -->
   </div>
@@ -30,3 +30,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .submit {
+    margin: 0 5px;
+  }
+</style>
