@@ -12,6 +12,7 @@
             v-bind:next="next"
             v-bind:submit="submit"
             v-bind:answer="answer"
+            v-bind:isAnswered="isAnswered"
           /></b-col>
       </b-row>
     </b-container>
@@ -40,7 +41,8 @@ export default {
     return { //dataファンクションに返り値を入れる(jsonオブジェクトにする必要がある)
       questions: null, //変数の初期値を入れなきゃいけなくてnullは型を気にしなくていい形式（0で初期化するのと同じ。nullはintでも文字列でもない）
       index: 0,
-      answer: ''
+      answer: '',
+      isAnswered: false
     }
   },
   mounted() {
@@ -57,9 +59,12 @@ export default {
   methods: {
     next() { //index（配列の何番目を表示したい）のデータは App.vueが持ってるからここで書く。
       this.index++ //++で順番を増やすnext関数を作ってる
+      this.answer = ''
+      this.isAnswered = false
     },
     submit(selectedAnswer) {
       this.answer = this.correctAnswer === selectedAnswer ? '正解！' : '不正解！'
+      this.isAnswered = true
     }
   },
   computed: {

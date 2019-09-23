@@ -12,10 +12,10 @@
         <!-- 正解！ 出し入れしたい -->
       </p>
 
-      <b-button variant="primary" @click="submit('True')">Yes</b-button>
-      <b-button variant="danger" @click="submit('False')">No</b-button><br>
+      <b-button variant="primary" @click="submit('True')" :disabled="isAnswered">Yes</b-button>
+      <b-button variant="danger" @click="submit('False')" :disabled="isAnswered">No</b-button><br>
     </b-jumbotron>
-    <b-button variant="info" @click="next()">Next</b-button> <!-- 出し入れしたい -->
+    <b-button variant="info" @click="next()" :disabled="!isAnswered">Next</b-button> <!-- 出し入れしたい -->
   </div>
 </template>
 
@@ -25,7 +25,8 @@ export default {
     questions: String,
     next: Function,
     submit: Function,
-    answer: String
+    answer: String,
+    isAnswered: Boolean
   }
 }
 </script>
