@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <Header />
+    <Header
+      v-bind:correctCount="correctCount"
+      v-bind:totalCount="totalCount"
+    />
 
     <b-container class="bv-example-row">
       <b-row>
@@ -42,7 +45,9 @@ export default {
       questions: null, //変数の初期値を入れなきゃいけなくてnullは型を気にしなくていい形式（0で初期化するのと同じ。nullはintでも文字列でもない）
       index: 0,
       answer: '',
-      isAnswered: false
+      isAnswered: false,
+      correctCount: 0,
+      totalCount: 0
     }
   },
   mounted() {
@@ -63,8 +68,14 @@ export default {
       this.isAnswered = false
     },
     submit(selectedAnswer) {
-      this.answer = this.correctAnswer === selectedAnswer ? '正解！' : '不正解！'
+      if(this.correctAnswer === selectedAnswer) {
+        this.answer = '正解！'
+        this.correctCount++
+      } else {
+        this.answer = '不正解！'
+      }
       this.isAnswered = true
+      this.totalCount++
     }
   },
   computed: {
